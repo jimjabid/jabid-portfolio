@@ -210,7 +210,7 @@ function animateHome() {
   });
 }
 
-function animateAbout() {
+function animateScroll() {
   // Here are the variables and constants
   gsap.registerPlugin(ScrollTrigger);
 
@@ -318,14 +318,14 @@ function animateAbout() {
   });
   ScrollTrigger.create({
     animation: aboutBoxesTl2,
-    trigger: ".about__box:nth-child(1)",
+    trigger: ".about__box:nth-child(2)",
     id: "close-box",
     // togglesAction: "restart pause resume none",
     scrub: true,
     // pinSpacing: false,
     // markers: true,
-    start: "top 10%",
-    end: "+=150 5%",
+    start: "bottom top",
+    end: "+=250 15%",
   });
 }
 
@@ -444,4 +444,4 @@ const scrollUp = () => {
 };
 window.addEventListener("scroll", scrollUp);
 
-animateAbout();
+animateScroll();
