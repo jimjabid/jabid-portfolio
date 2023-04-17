@@ -150,33 +150,66 @@ img {
 /* ===================== header and navbar ===================== */
 
 .header {
-  height: calc(var(--header-heigth) + 1rem);
+  /* height: var(--header-heigth); */
   width: 100%;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   z-index: var(--z-modal);
+}
+
+.nav {
+  height: var(--header-heigth);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--body-color);
+}
+
+.nav__logo {
+  font-family: var(--title-font);
+  font-weight: var(--font-semi-bold);
+  color: var(--body-font);
+}
+.scroll-header {
+  box-shadow: 0 0 5px hsla(0, 0%, 0%, 25%);
+}
+
+.img__header {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: var(--main-color);
 }
 
 .nav__menu {
   position: fixed;
   z-index: var(--z-modal);
-  padding: 1.25rem;
+  padding: 1rem;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: calc(var(--header-heigth) + 1rem);
+  height: var(--header-heigth);
   background-color: var(--body-color);
   box-shadow: 0 0 5px hsla(0, 0%, 0%, 25%);
 }
 
 .nav__list {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
+.nav__link span {
+  display: none;
+}
+
 .nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
   font-size: var(--smaller-font-size);
   color: var(--text-color-light);
   transition: color 0.3s;
@@ -203,16 +236,25 @@ img {
   position: absolute;
   width: 100%;
   height: 100%;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+  /* grid-template-columns: repeat(3, 1fr); */
+  /* gap: 0; */
   z-index: var(--z-modal);
+  display: flex;
+  background-color: var(--main-color);
+  justify-content: center;
+  align-items: flex-end;
 }
 
-.cover__title span {
+.cover__title {
+  font-family: var(--title-font);
+  font-size: calc(var(--biggest-font-size) * 5);
+}
+
+/* #i {
   font-family: var(--body-font);
-}
+} */
 
-.cover__1 {
+/* .cover__1 {
   background-color: var(--main-color);
 }
 
@@ -229,7 +271,7 @@ img {
 
 .cover__3 {
   background-color: var(--main-color);
-}
+} */
 
 .svg-container {
   height: 100vh;
@@ -239,7 +281,7 @@ img {
   top: 0;
   bottom: 0;
   left: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   z-index: -1;
 }
 
@@ -293,6 +335,8 @@ circle {
 .home__container {
   position: relative;
   row-gap: 1rem;
+  margin-top: calc(var(--header-heigth));
+  /* grid-template-rows: 30% 70%; */
 }
 
 .home__data {
@@ -336,9 +380,10 @@ circle {
 }
 .home-blob-container {
   position: relative;
+  max-width: 360px;
+  height: 325px;
 }
 .home__blob {
-  /* position: relative; */
   width: 100%;
   height: 325px;
   background: var(--main-color);
@@ -457,14 +502,15 @@ circle {
   height: 100%;
 }
 
-.about .svg-container svg {
+/* .about .svg-container svg {
   height: 100%;
-}
+} */
 .about__container {
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   gap: 2.5rem;
   position: relative;
   padding-bottom: 0;
+  justify-items: center;
 }
 
 .about__info {
@@ -476,6 +522,7 @@ circle {
   height: 90vh;
 
   justify-items: center;
+  align-items: center;
 }
 
 .about__box {
@@ -484,9 +531,13 @@ circle {
   box-shadow: 0px 0px 15px hsla(207, 25%, 35%, 0.15);
   background-color: var(--body-color);
   border-radius: 0.75rem;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
 
+  align-items: center;
+  justify-items: center;
   padding: 1rem 0.5rem;
-  width: 95%;
+  max-width: 370px;
   height: 180px;
   top: 0;
   z-index: 3;
@@ -551,7 +602,7 @@ circle {
   /* height: 100%; */
 }
 
-.skills__title {
+.skills__content .skills__title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -930,23 +981,39 @@ circle {
 
 /* ===================== Small Device ===================== */
 
+@media screen and (min-width: 460px) and (max-width: 673px) {
+  .home-blob-container {
+    justify-self: center;
+  }
+  .home__blob {
+    width: 360px;
+  }
+  .nav__list {
+    justify-content: center;
+    column-gap: 4rem;
+  }
+}
+
 /* ===================== Medium Device ===================== */
 
 @media screen and (min-width: 674px) {
-  .svg-container svg {
+  /* .svg-container svg {
     scale: 1;
   }
 
   .svg-container__about {
     scale: 0.9;
-  }
+  } */
   .section__border {
     padding-bottom: 10rem;
   }
-
-  .section__title {
-    margin-bottom: 4rem;
+  .about .section__border {
+    padding-bottom: 5rem;
   }
+
+  /* .section__title {
+    margin-bottom: 4rem;
+  } */
 
   .home__container {
     display: grid;
@@ -963,26 +1030,26 @@ circle {
   .home__buttons {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 5rem;
+    /* align-items: center;
+    gap: 5rem; */
     flex-direction: column;
   }
 
   .home__blob {
-    width: 50vw;
+    max-width: 360px;
     overflow: hidden;
   }
-  .home__img-container {
+  /* .home__img-container {
     width: 50vw;
-  }
+  } */
 
   .contact__container {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .about__container {
+  /* .about__container {
     grid-template-columns: repeat(2, 1fr);
-  }
+  } */
 
   .about__img-container {
     width: 245px;
@@ -1035,6 +1102,61 @@ circle {
 
   #contact-title {
     margin-bottom: 2rem;
+  }
+}
+
+@media screen and (min-width: 810px) {
+  .about__info {
+    text-align: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "experience uiux"
+      "collaboration collaboration";
+    gap: 1rem 1rem;
+    width: 80vw;
+    height: 70vh;
+    justify-items: center;
+    align-items: center;
+  }
+  .about__box {
+    position: initial;
+  }
+  .about__box:nth-child(1) {
+    grid-area: experience;
+    justify-self: center;
+    align-self: flex-end;
+  }
+  .about__box:nth-child(2) {
+    grid-area: uiux;
+    justify-self: center;
+    align-self: flex-end;
+  }
+  .about__box:nth-child(3) {
+    grid-area: collaboration;
+    justify-self: center;
+    align-self: flex-start;
+  }
+
+  .svg-container {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    /* overflow: hidden; */
+    z-index: -1;
+    /* transform: rotate(40deg); */
+  }
+
+  .svg-container svg {
+    width: 120%;
+    height: 120%;
+    transform: scale(1.5);
   }
 }
 

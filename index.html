@@ -20,49 +20,62 @@
     <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
   <body>
-    <div class="cover grid">
+    <!-- <div class="cover grid">
       <div class="cover__1"></div>
       <div class="cover__2">
         <h1 class="cover__title section__title">H<span>i!</span></h1>
       </div>
       <div class="cover__3"></div>
+    </div> -->
+    <div class="cover">
+      <span class="span cover__title section__title">H</span
+      ><span class="span cover__title section__title" id="i">i</span>
     </div>
     <header class="header" id="header">
-      <nav class="nav container nav__menu" id="nav">
-        <ul class="nav__list">
-          <li class="nav__item">
-            <a href="#home" class="nav__link active-link">
-              <i class="ri-home-smile-line"></i>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#about" class="nav__link">
-              <i class="ri-user-line"></i>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#skills" class="nav__link">
-              <i class="ri-trophy-line"></i>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#projects" class="nav__link">
-              <i class="ri-briefcase-line"></i>
-            </a>
-          </li>
-          <li class="nav__item" id="contact-me">
-            <a href="#contact" class="nav__link">
-              <i class="ri-chat-3-line"></i>
-            </a>
-          </li>
-        </ul>
+      <nav class="nav container" id="nav">
+        <a href="#" class="nav__logo">Jabid</a>
+        <div class="nav__menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#home" class="nav__link active-link">
+                <i class="ri-home-smile-line"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#about" class="nav__link">
+                <i class="ri-user-line"></i>
+                <span>About Me</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#skills" class="nav__link">
+                <i class="ri-trophy-line"></i>
+                <span>Skills</span>
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#projects" class="nav__link">
+                <i class="ri-briefcase-line"></i>
+                <span>Projects</span>
+              </a>
+            </li>
+            <li class="nav__item" id="contact-me">
+              <a href="#contact" class="nav__link">
+                <i class="ri-chat-3-line"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="img__header"></div>
       </nav>
     </header>
 
     <main class="main" id="main">
       <!-- ===================== HOME ===================== -->
       <section class="home section" id="home">
-        <div class="svg-container">
+        <div class="svg-container svg-container__home">
           <svg
             width="313"
             height="576"
@@ -832,7 +845,7 @@
       </section>
       <!-- ===================== ABOUT ===================== -->
       <section class="about section" id="about">
-        <div class="svg-container">
+        <div class="svg-container svg-container__about">
           <svg
             width="313"
             height="576"
@@ -1597,7 +1610,7 @@
       </section>
       <!-- ===================== SKILLS ===================== -->
       <section class="skills section" id="skills">
-        <div class="svg-container">
+        <div class="svg-container svg-container__skills">
           <svg
             width="313"
             height="576"
@@ -2327,7 +2340,7 @@
             />
           </svg>
         </div>
-        <h2 class="section__title" id="skills-title">Skills</h2>
+        <h2 class="section__title skills__title">Skills</h2>
         <div class="skills__container container grid">
           <!-- ===================== SKILLS 1 ===================== -->
           <div class="skills__content">
@@ -2386,7 +2399,7 @@
       </section>
       <!-- ===================== PROJECTS ===================== -->
       <section class="projects section" id="projects">
-        <div class="svg-container">
+        <div class="svg-container svg-container__projects">
           <svg
             width="313"
             height="576"

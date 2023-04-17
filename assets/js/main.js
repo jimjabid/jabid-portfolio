@@ -48,12 +48,13 @@ class SplitTextJS {
 
 function animateHome() {
   const cover = document.querySelector(".cover");
-  const coverTitle = document.querySelector(".cover__title");
-  const cover1 = document.querySelector(".cover__1");
-  const cover2 = document.querySelector(".cover__2");
-  const cover3 = document.querySelector(".cover__3");
+  const coverTitle = document.querySelectorAll(".span");
+  // const cover1 = document.querySelector(".cover__1");
+  // const cover2 = document.querySelector(".cover__2");
+  // const cover3 = document.querySelector(".cover__3");
   const greeting = document.querySelector(".home__greeting");
   const navMenu = document.querySelector(".nav__menu");
+  const header = document.querySelector(".nav");
   // const splitGreeting = new SplitTextJS(greeting);
   const wrapperTitles = document.querySelector("#wrapper-home-name");
   const titles = document.querySelectorAll(".home__name-change");
@@ -63,270 +64,551 @@ function animateHome() {
   const cardDesign = document.querySelector("#card--design");
   const cardDevelopment = document.querySelector("#card--development");
 
-  var loadingTl = gsap.timeline({
-    defaults: { duration: 2, ease: "circ.out" },
-  });
+  loadTl = () => {
+    var loadingTl = gsap.timeline({
+      defaults: { duration: 2, ease: "circ.out" },
+    });
 
-  loadingTl
-    .to(
-      coverTitle,
-      {
-        scale: 8,
-        transformOrigin: "center center",
-        rotateZ: 360,
-      },
-      "<0.01"
-    )
-    .to(coverTitle, {
-      opacity: 0,
-    })
-
-    .to(cover1, {
-      yPercent: "-100",
-    })
-    .to(
-      cover2,
-      {
-        yPercent: "100",
-      },
-      "<"
-    )
-    .to(
-      cover3,
-      {
-        yPercent: "-100",
-      },
-      "<"
-    )
-    .to(
-      cover,
-      {
-        display: "none",
-      },
-      "<"
-    );
-
-  var greetingTL = gsap.timeline({
-    defaults: { duration: 2, ease: "circ.out" },
-  });
-
-  greetingTL
-    .from(
-      greeting,
-      {
-        yPercent: "100",
-        scale: 0.1,
+    loadingTl
+      .from(coverTitle, {
         opacity: 0,
-        transformOrigin: "center center",
-      },
-      "4.2"
-    )
-    .from(
-      navMenu,
-      {
-        y: "300",
-        ease: "circ.out",
-      },
-      "5"
-    )
-
-    .from(
-      wrapperTitles,
-      {
-        yPercent: "100",
-        scale: 0.1,
-        opacity: 0,
-        transformOrigin: "bottom center",
-      },
-      "4.2"
-    )
-    .add("aboutMeBtn")
-    .from(
-      aboutMeBtn,
-      { duration: 3, scale: 0, opacity: 0, yPercent: "300" },
-      "4.2"
-    )
-    .from(
-      socialLinks,
-      {
-        duration: 2.5,
-        opacity: 0,
-        rotation: 360,
-        y: "-500",
-        stagger: 0.2,
-        ease: "circ.out",
-      },
-      "4.2"
-    )
-    .add("homeBlob")
-    .from(
-      homeBlob,
-      {
-        duration: 3,
         scale: 0,
-        opacity: 0,
-        yPercent: "300",
-      },
-      "<aboutMeBtn"
-    )
-    .from(
-      cardDesign,
-      {
-        rotateZ: 360,
-        x: "200",
-      },
-      "<0.5"
-    )
-    .from(
-      cardDevelopment,
-      {
-        rotateZ: 360,
-        x: "-200",
-      },
-      "<"
-    );
-
-  var titleTL = gsap.timeline({
-    repeat: -1,
-    // onComplete: () => {
-    //   titleTL.pause(2);
-    // },
-  });
-
-  titles.forEach((title) => {
-    const splitTitle = new SplitTextJS(title);
-
-    titleTL
-      .from(
-        splitTitle.chars,
-        { y: 16, opacity: 0, rotateX: -90, stagger: 0.02 },
-        "<1"
-      )
+        // opacity: 0,
+        duration: 4,
+      })
+      .to(coverTitle, {
+        y: "-100vh",
+        // opacity: 0,
+        stagger: 0.25,
+      })
       .to(
-        splitTitle.chars,
-        { y: -16, opacity: 0, rotateX: 90, stagger: 0.02 },
-        "<2"
+        cover,
+        {
+          y: "-100vh",
+          display: "none",
+        },
+        "<0.25"
       );
-  });
+    // loadingTl
+    //   .to(
+    //     coverTitle,
+    //     {
+    //       // scale: 8,
+    //       transformOrigin: "center center",
+    //       // rotateZ: 360,
+    //     },
+    //     "<0.01"
+    //   )
+    //   .to(coverTitle, {
+    //     opacity: 0,
+    //   })
+
+    // .to(cover1, {
+    //   yPercent: "-100",
+    // })
+    // .to(
+    //   cover2,
+    //   {
+    //     yPercent: "100",
+    //   },
+    //   "<"
+    // )
+    // .to(
+    //   cover3,
+    //   {
+    //     yPercent: "-100",
+    //   },
+    //   "<"
+    // )
+  };
+
+  greetTl = () => {
+    var greetingTL = gsap.timeline({
+      defaults: { duration: 2, ease: "circ.out" },
+    });
+
+    greetingTL
+      .from(
+        greeting,
+        {
+          // yPercent: "100",
+          y: "100vh",
+          // scale: 0.1,
+          opacity: 0,
+          // transformOrigin: "center center",
+        },
+        "4.2"
+      )
+      .from(
+        navMenu,
+        {
+          // y: "300",
+          y: "100vh",
+          ease: "circ.out",
+        },
+        "5"
+      )
+      .from(
+        header,
+        {
+          opacity: 0,
+        },
+        "<"
+      )
+
+      .from(
+        wrapperTitles,
+        {
+          // yPercent: "100",
+          yPercent: "100vh",
+          // scale: 0.1,
+          opacity: 0,
+          // transformOrigin: "bottom center",
+        },
+        "4.2"
+      )
+      .add("aboutMeBtn")
+      .from(
+        aboutMeBtn,
+        // { duration: 3, scale: 0, opacity: 0, yPercent: "300" },
+        { duration: 3, scale: 0, opacity: 0, y: "100vh" },
+        "4.2"
+      )
+      .from(
+        socialLinks,
+        {
+          duration: 2.5,
+          opacity: 0,
+          rotation: 360,
+          y: "-500",
+          stagger: 0.2,
+          ease: "circ.out",
+        },
+        "4.2"
+      )
+      .add("homeBlob")
+      .from(
+        homeBlob,
+        {
+          duration: 3,
+          // scale: 0,
+          opacity: 0,
+          // yPercent: "300",
+          y: "100vh",
+        },
+        "<aboutMeBtn"
+      )
+      .from(
+        cardDesign,
+        {
+          rotateZ: 360,
+          x: "100vw",
+        },
+        "<0.5"
+      )
+      .from(
+        cardDevelopment,
+        {
+          rotateZ: 360,
+          x: "-100vw",
+        },
+        "<"
+      );
+  };
+
+  titleTlAnimation = () => {
+    var titleTL = gsap.timeline({
+      repeat: -1,
+      // onComplete: () => {
+      //   titleTL.pause(2);
+      // },
+    });
+
+    titles.forEach((title) => {
+      const splitTitle = new SplitTextJS(title);
+
+      titleTL
+        .from(
+          splitTitle.chars,
+          { y: 16, opacity: 0, rotateX: -90, stagger: 0.02 },
+          "<1"
+        )
+        .to(
+          splitTitle.chars,
+          { y: -16, opacity: 0, rotateX: 90, stagger: 0.02 },
+          "<2"
+        );
+    });
+  };
+
+  loadTl();
+  greetTl();
+  titleTlAnimation();
 }
 
 function animateScroll() {
-  // Here are the variables and constants
   gsap.registerPlugin(ScrollTrigger);
 
-  const svgBackground = document.querySelectorAll(".svg-container");
-  const aboutMeTitle = document.querySelector(".about-me__title");
-  const aboutBoxes = document.querySelectorAll(".about__box");
+  animateScrollSvgBackgrounds = () => {
+    // Here are the variables and constants
+    const svgBackgroundHome = document.querySelector(".svg-container__home");
+    const svgBackgroundAbout = document.querySelector(".svg-container__about");
+    const svgBackgroundSkills = document.querySelector(
+      ".svg-container__skills"
+    );
+    const svgBackgroundProjects = document.querySelector(
+      ".svg-container__projects"
+    );
+    // Here are the variables for the timelines
+    var svgBackgroundHomeTl = gsap.timeline();
+    var svgBackgroundAboutTl = gsap.timeline();
+    var svgBackgroundAboutTl2 = gsap.timeline();
+    var svgBackgroundSkillsTl = gsap.timeline();
+    var svgBackgroundSkillsTl2 = gsap.timeline();
+    var svgBackgroundProjectsTl = gsap.timeline();
+    var svgBackgroundProjectsTl2 = gsap.timeline();
 
-  // Here are the variables for the timelines
-
-  var svgBackgroundTl = gsap.timeline();
-  var aboutMeTitleTl = gsap.timeline();
-  var aboutBoxesTl = gsap.timeline();
-  var aboutBoxesTl2 = gsap.timeline();
-
-  // Here are the animations withint the time line.
-
-  svgBackgroundTl.to(svgBackground, {
-    yPercent: -15,
-    // rotateZ: 0.01,
-    scale: 1.5,
-    duration: 20,
-    ease: "circ.out",
-  });
-  aboutMeTitleTl.from(aboutMeTitle, {
-    opacity: 0,
-    duration: 4,
-    xPercent: -100,
-    ease: "circ.out",
-  });
-
-  aboutBoxesTl
-    .from(aboutBoxes, {
-      duration: 0.5,
-      xPercent: 100,
+    // Here are the animations withint the time line.
+    svgBackgroundHomeTl.to(svgBackgroundHome, {
+      yPercent: 5,
       ease: "circ.out",
-    })
-    .to(
-      ".about__box:nth-child(2)",
-      {
-        top: "12rem",
-        stagger: 0.5,
-      },
-      "+=0.5"
-    )
-    .to(".about__box:nth-child(3)", {
-      top: "24rem",
-      stagger: 0.5,
+    });
+    svgBackgroundAboutTl.to(svgBackgroundAbout, {
+      yPercent: -5,
+      ease: "circ.out",
+    });
+    svgBackgroundAboutTl2.to(svgBackgroundAbout, {
+      yPercent: 5,
+      ease: "circ.out",
     });
 
-  aboutBoxesTl2
-    .to(aboutBoxes, {
-      duration: 1.5,
+    svgBackgroundSkillsTl.to(svgBackgroundSkills, {
+      yPercent: -5,
       ease: "circ.out",
-    })
-
-    .to(
-      ".about__box:nth-child(1)",
-      {
-        top: "12rem",
-        stagger: 0.5,
-      },
-      "+=0.5"
-    )
-    .to(".about__box:nth-child(2)", {
-      top: "24rem",
-      stagger: 0.8,
-    })
-    .to(".about__box:nth-child(1)", {
-      top: "24rem",
-      stagger: 1,
+    });
+    svgBackgroundSkillsTl2.to(svgBackgroundSkills, {
+      yPercent: 5,
+      ease: "circ.out",
+    });
+    svgBackgroundProjectsTl.to(svgBackgroundProjects, {
+      yPercent: -5,
+      ease: "circ.out",
+    });
+    svgBackgroundProjectsTl2.to(svgBackgroundProjects, {
+      yPercent: 5,
+      ease: "circ.out",
     });
 
-  // Here are the scrollTriggers calling the animations as attributes
+    ScrollTrigger.create({
+      animation: svgBackgroundHomeTl,
+      trigger: ".home",
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top top",
+      end: "bottom top",
+    });
+    ScrollTrigger.create({
+      animation: svgBackgroundAboutTl,
+      trigger: ".about",
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top 85%",
+      end: "bottom top",
+    });
+    ScrollTrigger.create({
+      animation: svgBackgroundAboutTl2,
+      trigger: ".about",
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top 15%",
+      end: "bottom top",
+    });
+    ScrollTrigger.create({
+      animation: svgBackgroundSkillsTl,
+      trigger: ".skills",
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top 85%",
+      end: "bottom top",
+    });
+    ScrollTrigger.create({
+      animation: svgBackgroundSkillsTl2,
+      trigger: ".skills",
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top 15%",
+      end: "bottom top",
+    });
+    ScrollTrigger.create({
+      animation: svgBackgroundProjectsTl,
+      trigger: ".projects",
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top 85%",
+      end: "bottom top",
+    });
+    ScrollTrigger.create({
+      animation: svgBackgroundProjectsTl2,
+      trigger: ".projects",
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top 15%",
+      end: "bottom top",
+    });
+  };
 
-  ScrollTrigger.create({
-    animation: svgBackgroundTl,
-    trigger: ".home__greeting",
-    togglesAction: "restart pause resume none",
-    scrub: true,
-    // markers: true,
-    start: "top top",
-    end: "+=10000",
-  });
-  ScrollTrigger.create({
-    animation: aboutMeTitleTl,
-    trigger: aboutMeTitle,
-    togglesAction: "restart pause resume none",
-    scrub: true,
-    // markers: true,
-    start: "top 80%",
-    // end: "+=500",
-  });
-  ScrollTrigger.create({
-    animation: aboutBoxesTl,
-    trigger: aboutMeTitle,
-    id: "open-box",
-    // markers: true,
-    togglesAction: "restart pause resume none",
-    scrub: true,
-    // pinSpacing: false,
+  animateScrollAboutMeContent = () => {
+    let mm = gsap.matchMedia();
 
-    start: "top 80%",
-    end: "top top",
-    // end: ".about__box:nth-child(1)",
-  });
-  ScrollTrigger.create({
-    animation: aboutBoxesTl2,
-    trigger: ".about__box:nth-child(2)",
-    id: "close-box",
-    // togglesAction: "restart pause resume none",
-    scrub: true,
-    // pinSpacing: false,
-    // markers: true,
-    start: "bottom top",
-    end: "+=250 15%",
-  });
+    mm.add("(max-width: 810px)", () => {
+      // mobile setup code here...
+
+      // Here are the variables and constants
+      const aboutMeTitle = document.querySelector(".about-me__title");
+      const aboutBoxes = document.querySelectorAll(".about__box");
+
+      // Here are the variables for the timelines
+      var aboutMeTitleTl = gsap.timeline();
+      var aboutBoxesTl = gsap.timeline();
+      var aboutBoxesTl2 = gsap.timeline();
+
+      // Here are the animations withint the time line.
+      aboutMeTitleTl.from(aboutMeTitle, {
+        opacity: 0,
+        duration: 4,
+        yPercent: 10,
+        ease: "circ.out",
+      });
+
+      aboutBoxesTl
+        .from(aboutBoxes, {
+          duration: 0.5,
+          xPercent: 400,
+          ease: "circ.out",
+        })
+        .to(
+          ".about__box:nth-child(2)",
+          {
+            top: "12rem",
+            stagger: 0.5,
+          },
+          "+=0.5"
+        )
+        .to(".about__box:nth-child(3)", {
+          top: "24rem",
+          stagger: 0.5,
+        });
+
+      aboutBoxesTl2
+        .to(aboutBoxes, {
+          duration: 1.5,
+          ease: "circ.out",
+        })
+
+        .to(
+          ".about__box:nth-child(1)",
+          {
+            top: "12rem",
+            stagger: 0.5,
+          },
+          "+=0.5"
+        )
+        .to(".about__box:nth-child(2)", {
+          top: "24rem",
+          stagger: 0.8,
+        })
+        .to(".about__box:nth-child(1)", {
+          top: "24rem",
+          stagger: 1,
+        });
+
+      // Here are the scrollTriggers calling the animations
+      ScrollTrigger.create({
+        animation: aboutMeTitleTl,
+        trigger: aboutMeTitle,
+        togglesAction: "restart pause resume none",
+        scrub: true,
+        // markers: true,
+        start: "top 80%",
+        // end: "+=500",
+      });
+      ScrollTrigger.create({
+        animation: aboutBoxesTl,
+        trigger: aboutMeTitle,
+        id: "open-box",
+        // markers: true,
+        togglesAction: "restart pause resume none",
+        scrub: true,
+        // pinSpacing: false,
+
+        start: "top 80%",
+        end: "top top",
+        // end: ".about__box:nth-child(1)",
+      });
+      ScrollTrigger.create({
+        animation: aboutBoxesTl2,
+        trigger: ".about__box:nth-child(2)",
+        id: "close-box",
+        // togglesAction: "restart pause resume none",
+        scrub: true,
+        // pinSpacing: false,
+        // markers: true,
+        start: "top 15%",
+        end: "+=250 15%",
+      });
+    });
+
+    mm.add("(min-width: 810px)", () => {
+      // desktop setup code here...
+      // Here are the variables and constants
+      const aboutMeTitle = document.querySelector(".about-me__title");
+      const aboutBoxes = document.querySelectorAll(".about__box");
+
+      // Here are the variables for the timelines
+      var aboutMeTitleTl = gsap.timeline();
+      var aboutBoxesTl = gsap.timeline();
+      var aboutBoxesTl2 = gsap.timeline();
+
+      // Here are the animations withint the time line.
+      aboutMeTitleTl.from(aboutMeTitle, {
+        opacity: 0,
+        duration: 4,
+        y: "10vh",
+        ease: "circ.out",
+      });
+
+      aboutBoxesTl.from(aboutBoxes, {
+        opacity: 0,
+        duration: 4,
+        stagger: 1,
+
+        y: "10vh",
+        ease: "circ.out",
+      });
+
+      // .to(aboutBoxes,){
+
+      // }
+      //   .to(
+      //     ".about__box:nth-child(2)",
+      //     {
+      //       top: "12rem",
+      //       stagger: 0.5,
+      //     },
+      //     "+=0.5"
+      //   )
+      //   .to(".about__box:nth-child(3)", {
+      //     top: "24rem",
+      //     stagger: 0.5,
+      //   });
+
+      // aboutBoxesTl2
+      //   .to(aboutBoxes, {
+      //     duration: 1.5,
+      //     ease: "circ.out",
+      //   })
+
+      //   .to(
+      //     ".about__box:nth-child(1)",
+      //     {
+      //       top: "12rem",
+      //       stagger: 0.5,
+      //     },
+      //     "+=0.5"
+      //   )
+      //   .to(".about__box:nth-child(2)", {
+      //     top: "24rem",
+      //     stagger: 0.8,
+      //   })
+      //   .to(".about__box:nth-child(1)", {
+      //     top: "24rem",
+      //     stagger: 1,
+      //   });
+
+      // Here are the scrollTriggers calling the animations
+      ScrollTrigger.create({
+        animation: aboutMeTitleTl,
+        trigger: aboutMeTitle,
+        togglesAction: "restart pause resume none",
+        scrub: true,
+        // markers: true,
+        start: "top 80%",
+        // end: "+=500",
+      });
+      ScrollTrigger.create({
+        animation: aboutBoxesTl,
+        trigger: aboutMeTitle,
+        // markers: true,
+        togglesAction: "restart pause resume none",
+        scrub: true,
+        // pinSpacing: false,
+
+        start: "top 80%",
+        end: "top top",
+        // end: ".about__box:nth-child(1)",
+      });
+    });
+  };
+
+  animateScrollSkilllsContent = () => {
+    // Here are the variables and constants
+    const skillsTitles = document.querySelectorAll(".skills__title");
+    const skillBoxes = document.querySelectorAll(".skills__data");
+    // Here are the variables for the timelines
+    var skillsTitleSubtitleTl = gsap.timeline();
+    var skillBoxesTl = gsap.timeline();
+
+    // Here are the animations withint the time line.
+    skillsTitleSubtitleTl.from(skillsTitles, {
+      opacity: 0,
+      duration: 4,
+      y: "10vh",
+      ease: "circ.out",
+    });
+
+    skillBoxesTl.from(
+      skillBoxes,
+      {
+        opacity: 0,
+        duration: 4,
+        y: "10vh",
+        ease: "circ.out",
+        stagger: 1,
+      },
+      "<2"
+    );
+    // Here are the scrollTriggers calling the animations
+
+    ScrollTrigger.create({
+      animation: skillsTitleSubtitleTl,
+      trigger: skillsTitles,
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top 80%",
+      // end: "+=500",
+    });
+    ScrollTrigger.create({
+      animation: skillBoxesTl,
+      trigger: skillsTitles,
+      togglesAction: "restart pause resume none",
+      scrub: true,
+      // markers: true,
+      start: "top 80%",
+      // end: "+=500",
+    });
+  };
+
+  animateScrollSvgBackgrounds();
+  animateScrollAboutMeContent();
+  animateScrollSkilllsContent();
 }
 
 animateHome();
@@ -408,6 +690,15 @@ const sendEmail = (e) => {
   }
 };
 contactForm.addEventListener("submit", sendEmail);
+
+/*==================== CHANGE BACKGROUND HEADER ====================*/
+function scrollHeader() {
+  const nav = document.getElementById("header");
+  // When the scroll is greater than 80 viewport height, add the scroll-header class to the header tag
+  if (this.scrollY >= 80) nav.classList.add("scroll-header");
+  else nav.classList.remove("scroll-header");
+}
+window.addEventListener("scroll", scrollHeader);
 
 //  ===================== Scroll Sections Active Link =====================
 
